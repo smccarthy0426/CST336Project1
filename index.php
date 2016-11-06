@@ -1,8 +1,5 @@
 <?php
     //lets put includes here
-    
-    
-    
 ?>
 
 
@@ -15,7 +12,7 @@
     <body>
         <h1>Login to your Account!</h1>
         <form method="post" action = 'userLogin.php'>
-            Username: <input type="text" name="username" /> <br />
+            Username: <input type="text" name="accountName" /> <br />
             Password: <input type="password" name="password"  />
             <br />
             <input type="submit" name="loginForm" />
