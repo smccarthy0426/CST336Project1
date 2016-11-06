@@ -30,8 +30,8 @@
         
         $_SESSION['accountName'] = $record['accountName'];
         $_SESSION['currentUser'] = $record['firstName'] . " " . $record['lastName'];
-        echo "Success";
-        //header('Location: shopping.php');  //redirects to another program        
+        
+        header('Location: shopping.php');  //redirects to another program        
         
     }
               
