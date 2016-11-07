@@ -97,6 +97,59 @@
         $_SESSION['shoppingCart'] = $shoppingCart;
         header('Location:viewCart.php'); //sends user back to the login screen
     }
+        function getgenres()
+    {
+        global $conn;
+        $sql = "SELECT  deptName, departmentId
+                        FROM department 
+                        ORDER BY genre ASC";
+        $statement = $conn->prepare($sql);
+        $statement->execute();
+        $records = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $records;
+    }
+    $genre = $_GET[$genre];
+    $price = $_GET[$price];
+    $date = $_GET[$date];
+    function filterList()
+    {
+        global $conn, $genre, $price, $date, $shoppingCart;
+        if ($genre != "")
+        {
+            $sql = "SELECT * FROM
+                    stock WHERE genre=$genre";
+        }
+        if ($price !="")
+        {
+            
+        }
+        $statement= $conn->prepare($sql); 
+        $statement->execute(); 
+        $records = $statement->fetchAll(PDO::FETCH_ASSOC);
+        
+        
+        
+        
+        echo "<table>";
+        echo "<tr><td>Click a title to find out more!</td></tr>";
+        foreach($records as $game)
+        {
+            if(!in_array($game['title'],$shoppingCart))
+            {
+                echo "<tr><td>";
+                echo "<a href='viewTitle.php?gameTitle=".$game['title']. "'>" . $game['title'] . "</a>";
+                echo "</td>";
+                echo "<td>";
+                echo "<a href='updateCart.php?title=".$game['title']."'>Add To Cart</a>";
+                echo "</td>";
+                echo "</tr>";
+                
+            }
+        }
+        echo"</table>";
+        $_SESSION['shoppingCart'] = $shoppingCart;
+        
+    }
 ?>
 
 
@@ -118,6 +171,43 @@
             </h2>
             <br />
             <?=genListOfTitles()?>
+            <br/>
+            Genre:
+            <select name="genre">
+             <option value="">Select A Genre</option>
+               <?php
+               $departments = genres();
+               foreach ($genres as $genre) {
+                   echo "<option value='" . $genre['genre'] ."'> ".$genre['genre']." </option>";
+               }
+               ?>
+               </select>
+               <br/>
+               Price: 
+               <select name="price">
+                   <option value="">Order By</option>
+                   <option value="asc">Low to High</option>
+                   <option value="dec">High to Low</option>
+               </select>
+               <br/>
+               Release Date:
+               <select name="date">
+                   <option value="">Order By</option>
+                   <option value="asc">Soonest</option>
+                   <option value="dec">Latest</option>
+               </select>
+               <input type="filter" value="Filter">
+               <input type="cfilter" value="Clear">
+               <?php
+                if(isset($_GET[$filter]))
+                {
+                    
+                }
+                else if (isset($_GET[$cfilter]))
+                {
+                    
+                }
+               ?>
         </form>
         <form action="displayCart.php">
            <br />
