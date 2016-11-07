@@ -20,6 +20,7 @@
             echo "</tr>";
         }
         echo"</table>";
+        $_SESSION['shoppingCart'] = $shoppingCart;
     }
 ?>
 

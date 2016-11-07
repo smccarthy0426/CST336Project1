@@ -8,9 +8,6 @@
         header('Location:index.php'); //sends user back to the login screen
     }
     
-    
-    
-    
     $conn = getDatabaseConnection("project1");
     $accountName = $_POST['accountName'];
     $password = $_POST['password'];  
@@ -18,26 +15,10 @@
     
     if (!isset($_SESSION['shoppingCart'])) {
         $shoppingCart = array();  //initializing session variable
-        global $conn;
-        $sql = "SELECT * FROM
-              preorders p
-              LEFT JOIN accounts a
-                on p.accountId = a.accountId
-              LEFT JOIN stock s 
-                on s.gameId = p.gameId";
-        $statement= $conn->prepare($sql); 
-        $statement->execute(); 
-        $records = $statement->fetchAll(PDO::FETCH_ASSOC);
-        foreach($records as $preorder)
-        {
-            if($preorder ['accountName'] == $_SESSION['accountName'])
-            {
-                $shoppingCart[] = $preorder['title'];
-            }
-        }
-        
         $_SESSION['shoppingCart'] = $shoppingCart;
      }
+     
+     
     $shoppingCart = $_SESSION['shoppingCart'];
     
     function genCurrentOrders()
@@ -69,10 +50,11 @@
                     echo "<td id = 'notPaid'>Not Paid Off</td>";
                 }
                 echo "</tr>";
-                $shoppingCart[] = $preorder['title'];
+                
             }
         }
         echo "</table>";
+        
         $_SESSION['shoppingCart'] = $shoppingCart;
     }
     
