@@ -1,0 +1,20 @@
+table {
+    margin:0 auto;
+    border: 1px solid black;
+    display: inline-table;
+    background-color: #f7f588;
+    
+} 
+
+tr, td {
+   border: 1px solid #544E78;
+   
+}   
+
+#notPaid{
+    color:red;
+}
+
+body{
+    text-align:center;
+}
