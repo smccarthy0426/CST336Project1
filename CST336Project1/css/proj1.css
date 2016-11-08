@@ -7,7 +7,7 @@ h1, h2 {
 }
 
 table {
-    margin:0 auto;
+    margin: 0 auto;
     display: inline-table;
 }
 
@@ -44,6 +44,8 @@ input, option{
 
 .back{
     background: rgba(0,0,0,0) !important;
+    margin: 0 auto;
+    height: 2em;
 }
 
 .submit{

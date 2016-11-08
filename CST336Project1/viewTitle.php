@@ -94,6 +94,10 @@
     <body>
         <?=displayInfo()?>
         
+        <form class="back" action="shopping.php">
+            <input type="submit" class="login" value="Back to Shopping"/>
+        </form>
+        
     </body>
     </div>
 </html>
