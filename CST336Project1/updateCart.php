@@ -33,8 +33,13 @@
 
 
     </head>
-    <body>
+    <body
         <h1>Current Contents of Shopping Cart</h1>
         <?=displayCart()?>
+        
+        <form class="back" action="shopping.php">
+            <input type="submit" class="login" value="Back to Shopping"/>
+        </form>
+        
     </body>
 </html>
