@@ -1,0 +1,70 @@
+h1, h2 {
+    margin: 0 auto;
+    background: rgba(0,0,0,0.9);
+    color: rgb(255,255,255);
+    width: 500px;
+    
+}
+
+table {
+
+    margin:0 auto;
+    display: inline-table;
+    
+   
+} 
+
+a {
+    font-size: 2em; 
+}
+
+tr, td {
+    text-align: left;
+    background: rgba(255, 255, 255, 0.6);
+    border:7px solid black;
+   
+}  
+
+
+#notPaid{
+    color:red;
+}
+
+
+
+#body {
+    text-align: center;
+    margin: 0 auto !important;
+    background-image: url(https://a.disquscdn.com/get?url=http%3A%2F%2F4.bp.blogspot.com%2F-T8vwXaJcKGI%2FUl2RIIUqPxI%2FAAAAAAAADL8%2FNGYuEHSZGFs%2Fs1600%2FScreen%2BShot%2B2013-10-15%2Bat%2B2.01.28%2BPM.png&key=Tn1sWjqy1QojtNGzUViGRw);
+    background-position:0px, 0px;
+    background-repeat: repeat-x;
+    background-repeat: repeat-y;    
+    animation: animatedBackground 40s linear infinite;
+}
+
+
+#viewTitle {
+    width:700px;
+    margin: 0 auto;
+    
+   
+    
+}
+
+#text, #image {
+     float: left;
+}
+
+#image {
+    width: 200px;
+}
+
+#text {
+    text-align: center;
+    width: 500px;
+}
+
+@keyframes animatedBackground {
+    from{ background-position:0 0;}
+    to{ background-position: 100% 0;}
+}
