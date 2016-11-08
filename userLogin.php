@@ -24,7 +24,7 @@
     if (empty($record)) {  //it didn't find any record
         
         echo "This username does not exist in our records. Please try again or create a new account";
-        echo "<a href='login.php'> Try again </a>";
+        echo "<a href='index.php'> Try again </a>";
         
     } else {
         
