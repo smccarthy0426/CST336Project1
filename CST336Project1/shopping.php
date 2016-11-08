@@ -78,8 +78,8 @@
             
              
             
-            if(!in_array($game['title'],$shoppingCart))
-            {
+            //if(!in_array($game['title'],$shoppingCart))
+           // {
                 echo "<td>";
                 echo "<img src = 'img/" . strtolower($title) . ".jpg'/><br />";
                 echo "<a href='viewTitle.php?gameTitle=".$game['title']. "'>" . $game['title'] . "</a>";
@@ -88,7 +88,7 @@
                 echo "<a href='updateCart.php?title=".$game['title']."'>Add To Cart</a>";
                 echo "</td> </tr>";
                 
-            }
+           // }
            
         }
         
@@ -220,13 +220,13 @@
         </h2>
 
             <?=genCurrentOrders()?>
-        <form method = 'get'>
-            <h2>
-                Grab some more games today!
-            </h2>
+            
+            <h2> Grab some more games today!</h2>
             <br>
              <h2>Click a title to find out more! </h2>
             <br/>
+            
+        <form method = 'get'>
             Search: 
             <input type="text" name="title" placeholder="Game Title">
             <br/>
@@ -257,14 +257,23 @@
                <input type="submit" name = "filter" value="Filter">
                <input type="submit" name = "cfilter" value="Clear">
                <br/>
+                </form>
                <?php
                     check();
                ?>
-        </form>
-        <form action="displayCart.php">
+        
+        <div id="wrapper">
+        
+        <form class="back" action="displayCart.php">
            <br />
-           <input type="submit" value="Checkout">
+           <input type="submit" class="checkout" value="Checkout">
          </form>  
+         
+         <form class="back" action="logout.php">
+            <input type="submit" class="logout" value="Logout!"/>
+        </form>
+        </div>
+         
     </body>
 
     </div>

@@ -1,19 +1,15 @@
-
 h1, h2 {
     margin: 0 auto;
     background: rgba(0,0,0,0.9);
     color: rgb(255,255,255);
     width: 500px;
-    
+    font-family: serif;
 }
 
 table {
-
     margin:0 auto;
     display: inline-table;
-    
-   
-} 
+}
 
 a {
     font-size: 2em; 
@@ -21,21 +17,53 @@ a {
 
 tr, td {
     text-align: left;
-    background: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.7);
     border:7px solid black;
    
 }  
+
+form {
+    margin: 0 auto;
+    background: rgba(153, 153, 102, 0.9);
+    font-size: 1.5em;
+    width: 600px;
+ 
+}
+
+input, option{
+    line-height: 20px;
+}
+
+.checkout, .logout {
+    width: 20em;  
+    height: 5em;
+    float: left;
+    border: 5px solid black;
+    
+}
+
+.back{
+    background: rgba(0,0,0,0) !important;
+}
+
+input:focus {
+    background-color: lightblue;
+}
+
+#wrapper{
+    width: 500px;
+    height: 300px;
+    margin: 0 auto;
+    
+}
 
 #notPaid{
     color:red;
 }
 
-
-
-
 #body {
     text-align: center;
-    margin: 0 auto !important;
+    margin: 0 auto;
     background-image: url(https://a.disquscdn.com/get?url=http%3A%2F%2F4.bp.blogspot.com%2F-T8vwXaJcKGI%2FUl2RIIUqPxI%2FAAAAAAAADL8%2FNGYuEHSZGFs%2Fs1600%2FScreen%2BShot%2B2013-10-15%2Bat%2B2.01.28%2BPM.png&key=Tn1sWjqy1QojtNGzUViGRw);
     background-position:0px, 0px;
     background-repeat: repeat-x;
@@ -43,13 +71,9 @@ tr, td {
     animation: animatedBackground 40s linear infinite;
 }
 
-
 #viewTitle {
     width:700px;
     margin: 0 auto;
-    
-   
-    
 }
 
 #text, #image {
