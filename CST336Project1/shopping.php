@@ -173,22 +173,30 @@
         
         
         echo "<table>";
-        echo "<tr><td>Click a title to find out more!</td></tr>";
-
+        echo " <col width='700'>";
+        echo "<tr>";
         foreach($records as $game)
         {
-            if(!in_array($game['title'],$shoppingCart))
-            {
-                echo "<tr><td>";
+            $title = $game['title'];
+        
+            $title = str_replace(' ', '', $game['title']);
+            
+             
+            
+            //if(!in_array($game['title'],$shoppingCart))
+           // {
+                echo "<td>";
+                echo "<img src = 'img/" . strtolower($title) . ".jpg'/><br />";
                 echo "<a href='viewTitle.php?gameTitle=".$game['title']. "'>" . $game['title'] . "</a>";
                 echo "</td>";
                 echo "<td>";
                 echo "<a href='updateCart.php?title=".$game['title']."'>Add To Cart</a>";
-                echo "</td>";
-                echo "</tr>";
+                echo "</td> </tr>";
                 
-            }
+           // }
+           
         }
+        
         echo"</table>";
         $_SESSION['shoppingCart'] = $shoppingCart;
         

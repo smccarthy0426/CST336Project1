@@ -22,6 +22,44 @@
         echo "<h1>";
         echo $records['title'];
         echo "</h1>";
+         echo "<br><br>";
+        
+        if($records['genre'] == 'RPG')
+        {
+            echo "<div style='background:rgba(255, 51, 51, 0.9); width: 1000px; height: 400px; '";
+        }
+        else if($records['genre'] == 'Adventure')
+        {
+            echo "<div style='background:rgba(204, 153, 0, 0.9); width: 1000px; height: 400px; '";
+        }
+        else if($records['genre'] == 'Horror')
+        {
+            echo "<div style='background:rgba(184, 77, 255, 0.9); width: 1000px; height: 400px; '";
+        }
+        else if($records['genre'] == 'RTS')
+        {
+            echo "<div style='background:rgba(51, 102, 204, 0.9); width: 1000px; height: 400px; '";
+        }
+        else if($records['genre'] == 'Action')
+        {
+            echo "<div style='background:rgba(153, 255, 153, 0.9); width: 1000px; height: 400px; '";
+        }
+        else if($records['genre'] == 'Platformer')
+        {
+            echo "<div style='background:rgba(255, 102, 204, 0.9); width: 1000px; height: 400px; '";
+        }
+        else if($records['genre'] == 'Simulator')
+        {
+            echo "<div style='background:rgba(0, 255, 0, 0.9); width: 1000px; height: 400px; '";
+        }
+        else if($records['genre'] == 'Racing')
+        {
+            echo "<div style='background:rgba(51, 51, 0, 0.9); width: 1000px; height: 400px; '";
+        }
+        else 
+        {
+            echo "<div>";
+        }
         
         $title = $records['title'];
         
@@ -39,6 +77,7 @@
         echo "<br />";
         echo "Price: $" . $records['price'] . "<br />";
         echo "</div>";
+        echo "</div>";
         
         echo "</div>";
         
@@ -51,8 +90,10 @@
         <title>Game Description</title>
     </head>
          <link rel="stylesheet" href="css/proj1.css" type="text/css" />
+          <div id="body">
     <body>
         <?=displayInfo()?>
         
     </body>
+    </div>
 </html>
