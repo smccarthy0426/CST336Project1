@@ -8,8 +8,7 @@
     <head>
         <title>Gameshop</title>
         
-        <link rel="stylesheet" href="../css/proj1.css" type="text/css" />
-        
+        <link rel="stylesheet" href="css/proj1.css" type="text/css" />
     </head>
     <body>
         <h1>Login to your Account!</h1>

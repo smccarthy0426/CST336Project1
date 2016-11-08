@@ -1,3 +1,4 @@
+
 h1, h2 {
     margin: 0 auto;
     background: rgba(0,0,0,0.9);
@@ -25,10 +26,10 @@ tr, td {
    
 }  
 
-
 #notPaid{
     color:red;
 }
+
 
 
 

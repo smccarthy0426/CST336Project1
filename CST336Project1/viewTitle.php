@@ -50,10 +50,8 @@
     <head>
         <title>Game Description</title>
     </head>
-        
-         <link rel="stylesheet" href="../css/proj1.css" type="text/css" />
+         <link rel="stylesheet" href="css/proj1.css" type="text/css" />
     <body>
-        
         <?=displayInfo()?>
         
     </body>

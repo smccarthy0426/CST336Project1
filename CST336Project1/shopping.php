@@ -106,35 +106,75 @@
         function getgenres()
     {
         global $conn;
-        $sql = "SELECT  deptName, departmentId
-                        FROM department 
-                        ORDER BY genre ASC";
+        $sql = "SELECT DISTINCT genre
+                FROM stock ";
         $statement = $conn->prepare($sql);
         $statement->execute();
         $records = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $records;
     }
-    $genre = $_GET[$genre];
-    $price = $_GET[$price];
-    $date = $_GET[$date];
+   
     function filterList()
     {
-        global $conn, $genre, $price, $date, $shoppingCart;
-        if ($genre != "")
+        global $conn, $shoppingCart;
+        $price = $_GET['price'];
+        $date = $_GET['date'];
+        
+        $namedParameters = array();
+        $orders = array();
+        if (!empty($_GET['title']))
         {
-            $sql = "SELECT * FROM
-                    stock WHERE genre=$genre";
+            $sql = "SELECT * FROM stock
+                    WHERE title LIKE :title";
+            $namedParameters[':title']= "%". $_GET['title'] . "%";
         }
-        if ($price !="")
+        else{
+            $sql = "SELECT * FROM stock ";
+        }
+        if (!empty($_GET['genre']))
         {
-            
+            if (!empty($_GET['title']))
+            {
+                $sql = $sql . " AND genre =  :genre ";
+            }
+            else {
+                $sql = $sql . " WHERE genre =  :genre ";
+            }
+            $namedParameters[':genre'] = $_GET['genre'];
         }
+        if (!empty($_GET['price'])  && empty($_GET['date']))
+        {
+            if ($price == "ASC")
+                $sql = $sql . " ORDER BY price ASC " ;
+            else 
+                $sql = $sql . " ORDER BY price DESC ";
+                
+        }
+        if (!empty($_GET['date']) && empty($_GET['price']))
+        {
+            if ($date == "ASC")
+                $sql = $sql . " ORDER BY releaseDate ASC";
+            else 
+                $sql = $sql . " ORDER BY releaseDate DESC ";
+                
+        }
+        if (!empty($_GET['date']) && !empty($_GET['price']))
+        {
+            $orders[':price'] = $_GET['price'];
+            $orders[':date'] = $_GET['date'];
+            $sql = $sql . " ORDER BY price " . $orders[':price'] . ", releaseDate " . $orders[':date'] . " ";
+        }
+
         $statement= $conn->prepare($sql); 
-        $statement->execute(); 
+        $statement->execute($namedParameters); 
         $records = $statement->fetchAll(PDO::FETCH_ASSOC);
         
+        
+        
+        
         echo "<table>";
-        echo "<tr><td>";
+        echo "<tr><td>Click a title to find out more!</td></tr>";
+
         foreach($records as $game)
         {
             if(!in_array($game['title'],$shoppingCart))
@@ -153,6 +193,17 @@
         $_SESSION['shoppingCart'] = $shoppingCart;
         
     }
+    function check()
+    {
+        if(isset($_GET['filter'])){
+            //echo "Form was submitted!";
+            filterList();
+        }
+        else {
+            genListOfTitles();
+        }
+}
+
 ?>
 
 
@@ -160,7 +211,7 @@
 <html>
     <head>
         <title>Your Account</title>
-        <link rel="stylesheet" href="../css/proj1.css" type="text/css" />
+        <link rel="stylesheet" href="css/proj1.css" type="text/css" />
     </head>
     <div id="body">
     <body>
@@ -173,46 +224,41 @@
             <h2>
                 Grab some more games today!
             </h2>
-            <br />
-            <h2>Click a title to find out more! </h2>
             <br>
-            <?=genListOfTitles()?>
+             <h2>Click a title to find out more! </h2>
+            <br/>
+            Search: 
+            <input type="text" name="title" placeholder="Game Title">
             <br/>
             Genre:
-            <select name="genre">
-             <option value="">Select A Genre</option>
-               <?php
-               $departments = genres();
-               foreach ($genres as $genre) {
-                   echo "<option value='" . $genre['genre'] ."'> ".$genre['genre']." </option>";
-               }
-               ?>
-               </select>
-               <br/>
+            <select name="genre" >
+                 <option value=""> Select A Genre </option>
+                   <?php
+                   $genres = getgenres();
+                   foreach ($genres as $genre) {
+                       echo "<option value='" . $genre['genre'] . "'> " . $genre['genre']. " </option>";
+                   }
+                   ?>
+                   
+            </select>
                Price: 
                <select name="price">
                    <option value="">Order By</option>
-                   <option value="asc">Low to High</option>
-                   <option value="dec">High to Low</option>
+                   <option value="ASC">Low to High</option>
+                   <option value="DESC">High to Low</option>
                </select>
-               <br/>
                Release Date:
                <select name="date">
                    <option value="">Order By</option>
-                   <option value="asc">Soonest</option>
-                   <option value="dec">Latest</option>
+                   <option value="ASC">Soonest</option>
+                   <option value="DESC">Latest</option>
                </select>
-               <input type="filter" value="Filter">
-               <input type="cfilter" value="Clear">
+               <br/>
+               <input type="submit" name = "filter" value="Filter">
+               <input type="submit" name = "cfilter" value="Clear">
+               <br/>
                <?php
-                if(isset($_GET[$filter]))
-                {
-                    
-                }
-                else if (isset($_GET[$cfilter]))
-                {
-                    
-                }
+                    check();
                ?>
         </form>
         <form action="displayCart.php">
@@ -220,5 +266,6 @@
            <input type="submit" value="Checkout">
          </form>  
     </body>
+
     </div>
 </html>
